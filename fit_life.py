@@ -1,5 +1,7 @@
 # Проект FitLife - MVP версия 1.0
-
+import sys
+sys.stdin.reconfigure(encoding='utf-8')
+sys.stdout.reconfigure(encoding='utf-8')
 
 # 1. Знакомство
 user_name = input('Здравствуйте, как вас зовут?')
