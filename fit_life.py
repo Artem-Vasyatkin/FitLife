@@ -6,36 +6,44 @@ import sys
 sys.stdin.reconfigure(encoding='utf-8')
 sys.stdout.reconfigure(encoding='utf-8')
 
-# 1. Знакомство
-user_name = input('Здравствуйте, как вас зовут?')
-user_name_title = user_name.title()
-user_age = int(input('Сколько вам лет?'))
-# TODO: Спроси у пользователя имя и сохрани в переменную user_name
-# TODO: Спроси возраст и сохрани в переменную
-# user_age (не забудь преобразовать в число)
+report_splitting = ('-' * 40)
+milliliters_in_a_liter = 1000
+water_balance_in_ml = 30
 
-user_weigth = float(input('Укажите ваш вес в кг:'))
-user_height = float(input('Укажите ваш рост в метрах "Пример: 1.75"'))
-# 2. Сбор данных
-# TODO: Запроси вес (в кг) и сохрани в user_weight (тип float)
-# TODO: Запроси рост (в метрах, например 1.75)
-#  и сохрани в user_height (тип float)
 
-bmi = user_weigth / (user_height ** 2)
-bmi_round = round(bmi, 1)
-# 3. Логика расчетов (Функции как "черный ящик": используем арифметику)
-# Формула ИМТ: вес разделить на (рост в квадрате)
-# TODO: Рассчитай bmi (Индекс массы тела)
+def main():
+    """Основная функция программы FitLife."""
+    # 1. Знакомство
+    user_name = input('Здравствуйте, как вас зовут? ')
+    user_name_title = user_name.title()
+    user_age = int(input('Сколько вам лет? '
+                         'Укажите полный возраст "Пример: 27" '))
 
-water_needed = user_weigth * 0.03
-# Подсчет воды: вес * 30 мл
-# TODO: Рассчитай water_needed
-print("-" * 40)
-print(f"Отчет для пользователя: {user_name_title} ({user_age} г.)")
-print(f"Ваш индекс массы тела: {bmi_round}")
-print(f"Рекомендуемая норма воды {water_needed:.1f} л. в день")
-# 4. Вывод красивого результата
-# TODO: Используй f-строку, чтобы вывести
-# приветствие, например: "Привет, Иван!"
-# TODO: Выведи возраст, ИМТ (округленный до 1 знака) и норму воды.
-print("Расчет окончен. Будьте здоровы!")
+    # 2. Сбор данных
+    user_weigth = input('Укажите ваш вес в кг: ')
+    user_weigth_replace = float(user_weigth.replace(',', '.'))
+    user_height = input('Укажите ваш рост в метрах "Пример: 1.75" ')
+    user_height_replace = float(user_height.replace(',', '.'))
+
+    # 3. Логика расчетов (Функции как "черный ящик": используем арифметику)
+    # Формула ИМТ: вес разделить на (рост в квадрате)
+    bmi = user_weigth_replace / (user_height_replace ** 2)
+    bmi_round = round(bmi, 1)
+
+    # Подсчет воды: вес * 30 мл
+    water_needed = (
+        user_weigth_replace * water_balance_in_ml / milliliters_in_a_liter
+    )
+
+    # 4. Вывод красивого результата
+    print(
+        f'{report_splitting} \n'
+        f'Отчет для пользователя: {user_name_title} ({user_age} г.) \n'
+        f'Ваш индекс массы тела: {bmi_round} \n'
+        f'Рекомендуемая норма воды {water_needed:.1f} л. в день \n'
+        f'Расчет окончен. Будьте здоровы!'
+    )
+
+
+if __name__ == "__main__":
+    main()
