@@ -6,9 +6,9 @@ import sys
 sys.stdin.reconfigure(encoding='utf-8')
 sys.stdout.reconfigure(encoding='utf-8')
 
-report_splitting = ('-' * 40)
-milliliters_in_a_liter = 1000
-water_balance_in_ml = 30
+REPORT_SPLITTING = ('-' * 40)
+MILLILITERS_IN_A_LITER = 1000
+WATER_BALANCE_IN_ML = 30
 
 
 def main():
@@ -32,18 +32,24 @@ def main():
 
     # Подсчет воды: вес * 30 мл
     water_needed = (
-        user_weigth_replace * water_balance_in_ml / milliliters_in_a_liter
+        user_weigth_replace * WATER_BALANCE_IN_ML / MILLILITERS_IN_A_LITER
     )
+    # 4. Возвращает все методы
+    return REPORT_SPLITTING, user_name_title, user_age, bmi_round, water_needed
 
-    # 4. Вывод красивого результата
+
+if __name__ == '__main__':
+    (REPORT_SPLITTING,
+     user_name_title,
+     user_age,
+     bmi_round,
+     water_needed) = main()
+
+    # 5. Вывод красивого результата
     print(
-        f'{report_splitting} \n'
+        f'{REPORT_SPLITTING} \n'
         f'Отчет для пользователя: {user_name_title} ({user_age} г.) \n'
         f'Ваш индекс массы тела: {bmi_round} \n'
         f'Рекомендуемая норма воды {water_needed:.1f} л. в день \n'
         f'Расчет окончен. Будьте здоровы!',
     )
-
-
-if __name__ == "__main__":
-    main()
